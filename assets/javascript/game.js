@@ -1,5 +1,5 @@
 let score = 0;
-let randomQuestion = Math.floor(Math.random() * 10) + 1;
+let randomQNum=0;
 const questionList = [{
         q: "java",
         used: "f"
@@ -42,9 +42,14 @@ const questionList = [{
     },
 ];
 
+function randomQuestion(){
+     randomQNum = Math.floor(Math.random() * 10);
+}
+
 function questionSelect() {
-    if (randomQuestion <= (questionList.length - 1)) {
-        document.querySelector("#question").innerHTML = questionList[randomQuestion].q;
+    if (questionList[randomQNum].used="f") {
+        document.querySelector("#question").innerHTML = questionList[randomQNum].q;
+        questionList[randomQNum].used="t";
     } else {
         document.querySelector("#question").innerHTML = "Game Over";
         document.querySelector("#score").innerHTML = `Your final score is ${score} out of ${questionList.length}`;
@@ -54,3 +59,12 @@ function questionSelect() {
 function updateScore(){
     document.querySelector("#score").innerHTML = `Your score is: ${score}`;
 }
+
+//Main Game
+//===================================================================
+
+//call starter functions
+randomQuestion();
+questionSelect();
+updateScore();
+
